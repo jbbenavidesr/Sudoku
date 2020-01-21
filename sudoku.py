@@ -10,6 +10,17 @@ sudoku43 = [1,0,8, 4,0,0, 6,0,5,
             0,0,0, 0,0,5, 0,8,0,
             6,0,2, 0,0,4, 7,0,1]
 
+def sudoku_print(sk):
+    for i in range(9):
+        if i%3 == 0:
+            print(' ___________ ')
+        for j in range(9):
+            if j%3 == 0:
+                print("|", end= "")
+            print(sk[9*i + j], end= '')
+        print("|")
+    print(' ___________ ')
+
 def Check(sk, n):
     numRow= n//9;   numCol= n%9
     
@@ -63,5 +74,5 @@ def sudoku_solve(sk):
             
 
 sudoku_solve(sudoku43)
-print(sudoku43)
+sudoku_print(sudoku43)
             
