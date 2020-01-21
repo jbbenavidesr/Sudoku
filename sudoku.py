@@ -41,16 +41,17 @@ def sudoku_solve(sk):
     
     n = 0
     while n < len(sk):
-        numRow= n//9
-        numCol= n%9
         if n in fixed:
             n += 1
             continue
         else:
             while True:
                 sk[n] += 1
-                if sk[n] == 9:
+                if sk[n] > 9:
+                    sk[n] = 0
                     n -= 1
+                    while n in fixed:
+                        n -= 1
                     break
                 else:
                     couldbe = Check(sk,n)
