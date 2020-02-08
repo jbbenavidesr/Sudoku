@@ -15,11 +15,19 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
+# draw the white background onto the surface
+screen.fill(WHITE)
+
 # Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
 
-# draw the white background onto the surface
-screen.fill(WHITE)
+# set up the text
+text = basicFont.render('Sudoku', True, BLACK, WHITE)
+textRect = text.get_rect()
+textRect.top = screen.get_rect().top 
+textRect.centerx = screen.get_rect().centerx
+
+screen.blit(text, textRect)
 
 # draw the sudoku grid
 corners = [100, 50, 400, 350]
