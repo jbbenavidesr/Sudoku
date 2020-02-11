@@ -1,25 +1,35 @@
 # This code solves a 9x9 sudoku game given.
+import pygame
 
-sudoku43 = [1,0,8, 4,0,0, 6,0,5,
-            0,2,0, 9,0,0, 0,0,0,
-            0,0,0, 2,5,0, 0,0,7,
-            0,5,0, 0,1,0, 0,0,0,
-            7,0,0, 0,0,0, 0,0,3,
-            0,0,0, 0,2,0, 0,6,0,
-            3,0,0, 0,7,2, 0,0,0,
-            0,0,0, 0,0,5, 0,8,0,
-            6,0,2, 0,0,4, 7,0,1]
+class Sudoku:
 
-def sudoku_print(sk):
-    for i in range(9):
-        if i%3 == 0:
-            print(' ___________ ')
-        for j in range(9):
-            if j%3 == 0:
-                print("|", end= "")
-            print(sk[9*i + j], end= '')
-        print("|")
-    print(' ___________ ')
+    def __init__(self, screen):
+        # Al inicializar esto, debe escoger uno al azar, resolverlo y dibujarlo.
+        self.puzzle= self.select()
+        self.screen = screen
+
+    def select(self):
+        # For de moment I'll just use this one as a trail.
+        return "...21...5..2.46..1........9......95.4....7..6....85...9.1..2.84..8.7.1..2.6...7.."
+
+    def draw(self, color):
+        # draw the sudoku grid
+        corners = [100, 50, 400, 350]
+        x_div = (corners[2]-corners[0])/9
+        y_div = (corners[3]-corners[1])/9
+        # Draw the lines
+        for i in range(10):
+            if i%3 == 0:
+                gross = 4
+            else:
+                gross = 1
+            x= corners[0] + i*x_div
+            y= corners[1] + i*y_div
+            # Vertical line
+            pygame.draw.line(self.screen, color, (x , corners[1]), (x, corners[3]), gross) 
+            # Horizontal line
+            pygame.draw.line(self.screen, color, (corners[0], y), (corners[2], y), gross)
+
 
 def Check(sk, n):
     numRow= n//9;   numCol= n%9
@@ -45,11 +55,8 @@ def Check(sk, n):
     return True
 
 def sudoku_solve(sk):
-    fixed = []
-    for i in range(len(sk)):
-        if sk[i] > 0:
-            fixed.append(i)
-    
+    fixed = [i for i in range(len(sk)) if sk[i]!= "."]
+   
     n = 0
     while n < len(sk):
         if n in fixed:
@@ -73,6 +80,4 @@ def sudoku_solve(sk):
                         continue
             
 
-sudoku_solve(sudoku43)
-sudoku_print(sudoku43)
             
