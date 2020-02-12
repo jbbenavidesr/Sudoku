@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 
-import sudoku
+from sudoku import *
 
 # Initialize pygame modules
 pygame.init()
@@ -9,9 +9,6 @@ pygame.init()
 # Set up the screen
 screen = pygame.display.set_mode((500, 400), 0, 32) 
 pygame.display.set_caption("Sudoku")
-
-# Initialize Sudoku
-sk = sudoku.Sudoku(screen)
 
 # set up some basic colors in RGB Tuples
 BLACK = (0, 0, 0)
@@ -25,6 +22,10 @@ screen.fill(WHITE)
 
 # Set up fonts
 basicFont = pygame.font.SysFont(None, 48)
+numberFont = pygame.font.SysFont(None, 36)
+
+# Initialize Sudoku
+sk = Sudoku(screen, numberFont)
 
 # set up the text
 text = basicFont.render('Sudoku', True, BLACK, WHITE)
