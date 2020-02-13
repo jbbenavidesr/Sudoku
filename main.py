@@ -47,3 +47,8 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == MOUSEBUTTONDOWN:
+            sk.sudoku_solve(sk.puzzle)
+            sk.draw(BLACK)
+            pygame.display.update()
+        
